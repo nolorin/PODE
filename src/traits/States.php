@@ -1,14 +1,12 @@
 <?php
+namespace PODE\Traits;
+
 /** 
- * The PODE states trait is designed to provide discrete, adaptive character states that can be used
- * to describe variables. Each variable must be assigned one or more allowed states before a current
- * state can be assigned. A variable may be assigned a current state so long as that state is one
- * of the pre-defined, allowed states assigned to that variable.
  *
  * @author nolorin
  * @author www.github.com/nolorin
  * @package pode_tools
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
 trait podeStates {

@@ -1,18 +1,15 @@
 <?php
+namespace PODE\Traits;
+
 /** 
- * The PODE casting trait is designed to give an object more options in setting type casts for its
- * properties. This trait allows properties to have one or more type casts among the PHP basic data
- * types. It also allows for casting callback functions, which are functions that can be run with
- * arguments to determine whether a variable can be set as property to the object. The return value of
- * a casting callback function is interpetted as either TRUE or FALSE by podeCasting methods.
  *
  * @author nolorin
  * @author www.github.com/nolorin
  * @package pode_tools
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
-trait podeCasting {
+trait Casting {
 	/**
 	 * All user defined properties can be given a custom type cast, which may be the string name of a
 	 * data type, an array containing the string names of accepted data types, or a callback function
@@ -23,7 +20,7 @@ trait podeCasting {
 	protected array $pode_casts = array();
 	/**
 	 * Allows for custom error reporting.
-	 * @var bool $pode_cating_errors_on Whether or not error messages for 'podeCasting' will be displayed
+	 * @var bool $pode_cating_errors_on Whether or not error messages for 'Casting' will be displayed
 	 */
 	public bool $pode_casting_errors_on = TRUE;
 	/**

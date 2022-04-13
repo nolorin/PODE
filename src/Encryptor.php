@@ -1,27 +1,15 @@
 <?php
+namespace PODE;
+
 /** 
- * The encrypt class for the PODE tools package exists for the purpose of encrypting and  storing string 
- * variable information inside of an object, which increases data security within the runtime environment.
- * The 'podeEncrypt' class is especially useful when using multiple coding sources whose provenance is
- * not certain, such as plugins. It is also an extra layer of protection for handling and storing sensitive
- * client-side data in $_SESSION variables and global scopes because it minimizes the ability of hackers
- * to access that data via code injection, system logs, or remote hijacking of the system.
- *
- * This class uses the OpenSSL package for encrypting and decrypting data, and it does not prescribe
- * specific encryption methods. Initilization vectors for encryption are automatically generated and
- * stored as a protected variable. Encryption data are not directly displayed by '__debugInfo'.
- *
- * Properties are set to 'protected'and the class can be extended, but encrypting and decrypting functions
- * are set to 'final' to prevent instances where a dummy class is created as a Trojan horse for accessing 
- * protected information.
- *
+ * 
  * @author nolorin
  * @author www.github.com/nolorin
  * @package pode_tools
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
-class podeEncrypt {
+class Encryptor {
 	/**
 	 * All property values set after object initialization are stored in "open_vars" via magic methods
 	 * @since 1.0
@@ -37,7 +25,7 @@ class podeEncrypt {
 	*/
 	protected string $enc_default;
 	/**
-	 * Data that is encrypted and stored in a 'podeEncrypt' object is stored in a separate property
+	 * Data that is encrypted and stored in a 'Encryptor' object is stored in a separate property
 	 * array from the one used for unencrypted data. The array is associative, where the key is the
 	 * name of the given variable and the value is the encrypted data.
 	 * @since 1.0
@@ -46,8 +34,8 @@ class podeEncrypt {
 	protected array $enc_vars = array();
 	/**
 	 * All of the encryption methods used to encrypt data are stored here in a separate associative array
-	 * where the key for each item is the name of the variable stored in 'podeEncrypt->enc_vars'. When the
-	 * value of 'podeEncrypt->enc_methods[var]' is equal to NULL, it means that the default encryption
+	 * where the key for each item is the name of the variable stored in 'Encryptor->enc_vars'. When the
+	 * value of 'Encryptor->enc_methods[var]' is equal to NULL, it means that the default encryption
 	 * method should be used.
 	 * @since 1.0
 	 * @var array $enc_methods The property array where encryption methods are stored.
@@ -55,13 +43,13 @@ class podeEncrypt {
 	protected array $enc_methods = array();
 	/**
 	 * All of the intialization vectors thare used for the different variables are stored in a separate associative 
-	 * array where the key for eachitem is the name of the variable stored in 'podeEncrypt->enc_vars'.
+	 * array where the key for eachitem is the name of the variable stored in 'Encryptor->enc_vars'.
 	 * @since 1.0
 	 * @var array $enc_methods The property array where encryption methods are stored.
 	 */
 	protected array $enc_ivs = array();
 	/** 
-	 * The constructor for podeEncrypt requires a default encryption which cannot be changed after
+	 * The constructor for Encryptor requires a default encryption which cannot be changed after
 	 * object initialization.
 	 * @since 1.0
 	 * @param string $enc_default Default encryption method for object-data encryption. Check cipher
@@ -164,8 +152,8 @@ class podeEncrypt {
 	}
 	/** 
 	 * Method for decrypting stored variables using a decryption key, which should be the same as the encryption key
-	 * used to when the variable was encrypted using 'podeEncrypt:set'. It is not necessary to indicate decryption
-	 * method because methods are registered in 'podeEncrypt:set';
+	 * used to when the variable was encrypted using 'Encryptor:set'. It is not necessary to indicate decryption
+	 * method because methods are registered in 'Encryptor:set';
 	 * @since 1.0
 	 * @param string $name Name of the variable to be decrypted.
 	 * @param string $key The key that is to be used for decryption.

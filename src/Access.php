@@ -1,29 +1,15 @@
 <?php
+namespace PODE;
+
 /** 
- * The access verify class for the PODE toolkit is designed to handle access across multiple scopes
- * and with multiple users. This class is useful for managing permissions and can be an efficient
- * API between backend coding and database servers. It can also be useful as an authentication keychain
- * when multiple access levels or authenticating users are being processed in the same session or using
- * seralized code. The class is not extendable so as to prevent malicious code compromising the
- * verification system, which relies on boolean function returns for its methods.
- *
- * Each scope is referenced by an "access class", which has a set access code. Each access class may 
- * have a whitelist of associated users, so that any users who are not on the whitelist are automatically
- * denied access. Additionally, access classes may have one or more administrators who are identified by a
- * password; administrators may change the access code for their access class, add users to that class's
- * whitelist, and remove users from the whiteless.
- * 
- * This class uses the PHP core functions 'password_hash' and 'password_verify' for hashing
- * access codes and checking access codes and admin passwords against previously recorded
- * hashes. The hashing algorithm that is used for both functions is PASSWORD_DEFAULT.
  *
  * @author nolorin
  * @author www.github.com/nolorin
  * @package pode_tools
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
-final class podeAccessVerify {
+final class Access {
 	/** 
 	 * The codes used to unlock access to specific classes are all contained in the property array
 	 * 'access_codes', which is an associative array where the keys are the access classes and the

@@ -1,18 +1,12 @@
 <?php
+namespace PODE\Traits;
+
 /** 
- * The PODE permissions traits contains properties and methods for managing user access to data that is contained 
- * within the PODE object. Users can be assigned permissions, which may take the form of a symbolic string or
- * a callback function which may be called to return a symbolic string. Permissions callback functions may or may
- * not take arguments. A single administrator identified by a single password has the power to manage both users 
- * and permissions. If an administrator has not been set, then the management of users and permissions is unrestricted.
- * Changing or reseting the administrator may only be done if the property variable 'pode_admin_regenerate' is set to
- * TRUE before any admin is assigned to the object or if the current admin's name and password invoked when changing
- * the property via the method 'pode_admin_regenerate'.
  *
  * @author nolorin
  * @author www.github.com/nolorin
  * @package pode_tools
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
 trait podePermissions {

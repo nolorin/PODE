@@ -1,26 +1,23 @@
 <?php
+namespace PODE;
+
+use PODE\Traits\Permissions as Permissions;
+use PODE\Traits\Casting as Casting;
+use PODE\Traits\States as States;
+
 /** 
- * The handler class for the PODE toolkit is designed to maximize control and security for data management within the
- * PHP runtime environment, either within scripts, in session variables, or via serialized code. The handler class
- * is especially useful in situations where client-side data must be processed raw. In such a case, the handler's
- * casting methods and callable casting allow for flexibility in screening data types; the handler's system for
- * permissions minimizes the risk of accidentally releasing incorrect data; and the handler's system for variable
- * states provides a foundation for storing specific variable information without injecting client-side data into
- * the workflow.
- *
- * The class is broken up into a core class and three traits, which are 'podeCasting', 'podePermissions',
- * and 'podeStates'. Each of the component traits are designed so they can be used in outside of PODE
- * data classes, but the 'podeHandler' class requires the three states to function. 
+ * 
  * @author nolorin
  * @author www.github.com/nolorin
  * @package pode_tools
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
-class podeHandler {
-	use podePermissions, podeCasting, podeStates;
+
+class Handler {
+	use Permissions, Casting, States;
 	/**
-	 * All of the user defined variables for the 'podeHandler' class are stored in a single
+	 * All of the user defined variables for the 'Handler' class are stored in a single
 	 * property variable called $vars, and variables in this array can only be altered or
 	 * accessed via methods.
 	 * @var array $vars
@@ -29,7 +26,7 @@ class podeHandler {
 	protected array $vars = array();
 	/**
 	 * Allows for custom error reporting.
-	 * @var bool $erros_on Whether or not error messages for 'podeHandler' will be displayed
+	 * @var bool $erros_on Whether or not error messages for 'Handler' will be displayed
 	 */
 	protected bool $errors_on = TRUE;
 	/**
@@ -44,28 +41,28 @@ class podeHandler {
 	}
 	/**
 	 * Magic method '__set' automatically returns the public method 'set', which implements the
-	 * data controls defined in the traits that 'podeHandler' uses.
+	 * data controls defined in the traits that 'Handler' uses.
 	 * @param string $name Name of variable to be set
 	 * @param mixed $value Value of variable to be set
-	 * @return bool Returns the output of method 'podeHandler:set'.
+	 * @return bool Returns the output of method 'Handler:set'.
 	 */
 	public function __set( string $name, $value ) {
 		return $this->set( $name, $value );
 	}
 	/**
 	 * Magic method '__get' automatically returns the public method 'get', which implements the
-	 * data controls defined in the traits that 'podeHandler' uses.
+	 * data controls defined in the traits that 'Handler' uses.
 	 * @param string $name Name of requested variable
-	 * @return bool Returns the output of method 'podeHandler:get'.
+	 * @return bool Returns the output of method 'Handler:get'.
 	 */
 	public function __get( string $name ) {
 		return $this->get( $name );
 	}
 	/**
 	 * Magic method '__unset' automatically returns the public method 'unset', which implements the
-	 * data controls defined in the traits that 'podeHandler' uses.
+	 * data controls defined in the traits that 'Handler' uses.
 	 * @param string $name Name of variable to be unset
-	 * @return bool Returns the output of method 'podeHandler:unset'.
+	 * @return bool Returns the output of method 'Handler:unset'.
 	 */
 	public function __unset( string $name ) {
 		return $this->unset( $name );
